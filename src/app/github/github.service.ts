@@ -11,7 +11,15 @@ export class GithubService {
     }
 
  
-
+    getUserDetails(userId):Observable<any> {
+        const url = 'http://api.github.com/users/' + userId;
+        return this.http.get(url).map(
+            res => {
+                const user = res.json();
+                return user;
+            }
+        )
+    }
     getGithubUsers(searchText): Observable<any> {
 
         const url = 'http://api.github.com/search/users?q=' + searchText;
